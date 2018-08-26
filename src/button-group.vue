@@ -6,7 +6,14 @@
 
 <script>
     export default {
-
+        mounted() {
+            for(const node of this.$el.children) {
+                const tag = node.tagName.toLowerCase()
+                if(tag !== 'button') {
+                    console.warn(`w-button-group 子元素应为 w-button, 你使用了${tag}`)
+                }
+            }
+        }
     }
 </script>
 
