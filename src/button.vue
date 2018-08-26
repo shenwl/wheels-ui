@@ -4,8 +4,8 @@
         :class="`icon-position-${iconPosition}`"
         @click="$emit('click')"
     >
-        <w-icon :icon="icon" v-if="icon"></w-icon>
-        <w-icon icon="loading" v-if="loading"></w-icon>
+        <w-icon :icon="icon" v-if="icon && !loading"></w-icon>
+        <w-icon icon="loading" class="loading" v-if="loading"></w-icon>
         <div class="content">
             <slot></slot>
         </div>
