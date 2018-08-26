@@ -13,24 +13,29 @@
 </template>
 
 <script>
-export default {
-    props: {
-        icon: {
-            type: String,
-        },
-        loading: {
-            type: Boolean,
-            default: false,
-        },
-        iconPosition: {
-            type: String,
-            default: 'left',
-            validator(position) {
-                return position === 'right' || position === 'left'
+    import Vue from 'vue'
+    import Icon from './icon'
+
+    Vue.component('w-icon', Icon)
+
+    export default {
+        props: {
+            icon: {
+                type: String,
             },
+            loading: {
+                type: Boolean,
+                default: false,
+            },
+            iconPosition: {
+                type: String,
+                default: 'left',
+                validator(position) {
+                    return position === 'right' || position === 'left'
+                },
+            }
         }
     }
-}
 </script>
 
 <style lang="scss">
@@ -81,6 +86,7 @@ export default {
             outline: none;
         }
     }
+
     .loading {
         animation: spin 2s infinite;
     }
