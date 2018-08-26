@@ -13,12 +13,12 @@
 </template>
 
 <script>
-    import Vue from 'vue'
     import Icon from './icon'
 
-    Vue.component('w-icon', Icon)
-
     export default {
+        components: {
+            'w-icon': Icon,
+        },
         props: {
             icon: {
                 type: String,
