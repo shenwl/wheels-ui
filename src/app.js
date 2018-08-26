@@ -50,3 +50,19 @@ const {expect} = chai
     vm.$el.remove()
     vm.$destroy()
 }
+{
+    // 测试Button的click事件
+    const Constructor = Vue.extend(Button)
+    const vm = new Constructor({
+        propsData: {
+            icon: 'upload',
+        }
+    }).$mount()
+    const spy = chai.spy(() => {})
+    vm.$on('click', spy)
+    const button = vm.$el
+    button.click()
+    expect(spy).to.have.been.called()
+    vm.$el.remove()
+    vm.$destroy()
+}
