@@ -1,0 +1,26 @@
+{
+  "name": "wheels-ui",
+  "version": "1.0.0",
+  "description": "vue ui lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenwl/wheels-ui.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "shenwl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shenwl/wheels-ui/issues"
+  },
+  "homepage": "https://github.com/shenwl/wheels-ui#readme",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
+}
