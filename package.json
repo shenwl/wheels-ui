@@ -2,7 +2,7 @@
   "name": "wheels-test-1",
   "version": "0.0.1",
   "description": "vue ui lib",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "parcel": "npx parcel --no-cache index.html",
     "dev-test": "parcel watch test/* --no-cache & karma start",
