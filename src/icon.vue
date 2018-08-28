@@ -8,6 +8,7 @@
     import './svg'
 
     export default {
+        name: 'w-icon',
         props: {
             icon: {
                 type: String,

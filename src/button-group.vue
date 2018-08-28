@@ -6,6 +6,7 @@
 
 <script>
     export default {
+        name: 'w-button-group',
         mounted() {
             for(const node of this.$el.children) {
                 const tag = node.tagName.toLowerCase()

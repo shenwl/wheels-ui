@@ -16,6 +16,7 @@
     import Icon from './icon'
 
     export default {
+        name: 'w-button',
         components: {
             'w-icon': Icon,
         },
