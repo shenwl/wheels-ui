@@ -11,4 +11,9 @@ Vue.component('w-input', Input)
 
 new Vue({
     el: '#app',
+    methods: {
+        inputChange(e) {
+            console.log(e.target.value)
+        }
+    }
 })
