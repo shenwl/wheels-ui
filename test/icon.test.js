@@ -18,5 +18,6 @@ describe('Icon', () => {
         const useEl = vm.$el.querySelector('use')
         const href = useEl.getAttribute('xlink:href')
         expect(href === '#i-settings').to.eq(true)
+        vm.$destroy()
     })
 })
