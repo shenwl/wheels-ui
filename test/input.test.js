@@ -59,6 +59,21 @@ describe('Input', () => {
         })
     })
     describe('事件', () => {
+        const Constructor = Vue.extend(Input)
+        let vm
+        afterEach(() => {
+            vm.$destroy()
+        })
+        it('支持 change 事件', () => {
+            vm = new Constructor({}).$mount()
+            const callback = sinon.fake()
+            vm.$on('change', callback)
 
+            const event = new Event('change')
+            const inputEL = vm.$el.querySelector('input')
+            inputEL.dispatchEvent(event)
+
+            expect(callback).to.have.been.called
+        })
     })
 })
