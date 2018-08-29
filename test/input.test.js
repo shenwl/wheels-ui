@@ -9,9 +9,13 @@ describe('Input', () => {
         expect(Input).to.be.exist
     })
     describe('props', () => {
+        const Constructor = Vue.extend(Input)
+        let vm
+        afterEach(() => {
+            vm.$destroy()
+        })
         it('接收 value', () => {
-            const Constructor = Vue.extend(Input)
-            const vm = new Constructor({
+            vm = new Constructor({
                 propsData: {
                     value: 'testValue',
                 }
@@ -22,8 +26,7 @@ describe('Input', () => {
 
         })
         it('接收 disabled', () => {
-            const Constructor = Vue.extend(Input)
-            const vm = new Constructor({
+            vm = new Constructor({
                 propsData: {
                     disabled: true,
                 }
@@ -33,8 +36,7 @@ describe('Input', () => {
             vm.$destroy()
         })
         it('接收 readonly', () => {
-            const Constructor = Vue.extend(Input)
-            const vm = new Constructor({
+            vm = new Constructor({
                 propsData: {
                     readonly: true,
                 }
@@ -44,8 +46,7 @@ describe('Input', () => {
             vm.$destroy()
         })
         it('接收 error', () => {
-            const Constructor = Vue.extend(Input)
-            const vm = new Constructor({
+            vm = new Constructor({
                 propsData: {
                     error: "errorTest",
                 }
