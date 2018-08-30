@@ -72,7 +72,36 @@ describe('Input', () => {
             const event = new Event('change')
             const inputEL = vm.$el.querySelector('input')
             inputEL.dispatchEvent(event)
+            expect(callback).to.have.been.calledWith(event)
+        })
+        it('支持 input 事件', () => {
+            vm = new Constructor({}).$mount()
+            const callback = sinon.fake()
+            vm.$on('input', callback)
 
+            const event = new Event('input')
+            const inputEL = vm.$el.querySelector('input')
+            inputEL.dispatchEvent(event)
+            expect(callback).to.have.been.calledWith(event)
+        })
+        it('支持 focus 事件', () => {
+            vm = new Constructor({}).$mount()
+            const callback = sinon.fake()
+            vm.$on('focus', callback)
+
+            const event = new Event('focus')
+            const inputEL = vm.$el.querySelector('input')
+            inputEL.dispatchEvent(event)
+            expect(callback).to.have.been.calledWith(event)
+        })
+        it('支持 blur 事件', () => {
+            vm = new Constructor({}).$mount()
+            const callback = sinon.fake()
+            vm.$on('blur', callback)
+
+            const event = new Event('blur')
+            const inputEL = vm.$el.querySelector('input')
+            inputEL.dispatchEvent(event)
             expect(callback).to.have.been.calledWith(event)
         })
     })
