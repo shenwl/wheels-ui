@@ -64,45 +64,16 @@ describe('Input', () => {
         afterEach(() => {
             vm.$destroy()
         })
-        it('支持 change 事件', () => {
-            vm = new Constructor({}).$mount()
-            const callback = sinon.fake()
-            vm.$on('change', callback)
-
-            const event = new Event('change')
-            const inputEL = vm.$el.querySelector('input')
-            inputEL.dispatchEvent(event)
-            expect(callback).to.have.been.calledWith(event)
-        })
-        it('支持 input 事件', () => {
-            vm = new Constructor({}).$mount()
-            const callback = sinon.fake()
-            vm.$on('input', callback)
-
-            const event = new Event('input')
-            const inputEL = vm.$el.querySelector('input')
-            inputEL.dispatchEvent(event)
-            expect(callback).to.have.been.calledWith(event)
-        })
-        it('支持 focus 事件', () => {
-            vm = new Constructor({}).$mount()
-            const callback = sinon.fake()
-            vm.$on('focus', callback)
-
-            const event = new Event('focus')
-            const inputEL = vm.$el.querySelector('input')
-            inputEL.dispatchEvent(event)
-            expect(callback).to.have.been.calledWith(event)
-        })
-        it('支持 blur 事件', () => {
-            vm = new Constructor({}).$mount()
-            const callback = sinon.fake()
-            vm.$on('blur', callback)
-
-            const event = new Event('blur')
-            const inputEL = vm.$el.querySelector('input')
-            inputEL.dispatchEvent(event)
-            expect(callback).to.have.been.calledWith(event)
+        it('支持 change/input/focus/blur 事件', () => {
+            ['change', 'input', 'focus', 'blur'].forEach((eventName) => {
+                vm = new Constructor({}).$mount()
+                const callback = sinon.fake()
+                vm.$on(eventName, callback)
+                const event = new Event(eventName)
+                const inputEL = vm.$el.querySelector('input')
+                inputEL.dispatchEvent(event)
+                expect(callback).to.have.been.calledWith(event)
+            })
         })
     })
 })
