@@ -9,8 +9,8 @@
         name: "w-col",
         computed: {
             colClass() {
-                let {span} = this;
-                return [span && `col-${span}`];
+                let {span, offset} = this;
+                return [span && `col-${span}`, offset && `col-offset-${offset}`];
             },
             colStyle() {
                 let {gutter} = this
@@ -42,6 +42,13 @@
         @for $n from 1 through 24 {
             &.#{$prefix}#{$n} {
                 width: ($n / 24) * 100%;
+            }
+        }
+
+        $prefix: col-offset-;
+        @for $n from 1 through 24 {
+            &.#{$prefix}#{$n} {
+                margin-left: ($n / 24) * 100%;
             }
         }
     }
