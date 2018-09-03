@@ -1,5 +1,5 @@
 <template>
-    <div class="w-col" :class="colClass">
+    <div class="w-col" :class="colClass" :style="colStyle">
 
     </div>
 </template>
@@ -9,13 +9,27 @@
         name: "w-col",
         computed: {
             colClass() {
-                let {col} = this;
-                return [col && `col-${col}`];
+                let {span} = this;
+                return [span && `col-${span}`];
+            },
+            colStyle() {
+                let {gutter} = this
+                return {
+                    paddingLeft: gutter / 2 + "px",
+                    paddingRight: gutter / 2 + "px"
+                }
             }
         },
         props: {
-            col: {
+            span: {
                 type: [Number, String],
+            },
+            offset: {
+                type: [Number, String],
+            },
+            gutter: {
+                type: [Number, String],
+                default: 0,
             }
         }
     }
