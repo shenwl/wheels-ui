@@ -1,6 +1,6 @@
 <template>
     <div class="w-col" :class="colClass" :style="colStyle">
-
+        <slot></slot>
     </div>
 </template>
 
@@ -37,6 +37,11 @@
 
 <style lang="scss" scoped>
     .w-col {
+        height: 100px;
+        background: #666;
+        border: 1px solid black;
+        color: #fff;
+
         $prefix: col-;
 
         @for $n from 1 through 24 {
