@@ -7,6 +7,11 @@
 <script>
     export default {
         name: "w-col",
+        data() {
+            return {
+                gutter: 0,
+            }
+        },
         computed: {
             colClass() {
                 let {span, offset} = this;
@@ -27,10 +32,6 @@
             offset: {
                 type: [Number, String],
             },
-            gutter: {
-                type: [Number, String],
-                default: 0,
-            }
         }
     }
 </script>
