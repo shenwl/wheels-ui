@@ -17,7 +17,7 @@ describe('Row & Col', () => {
         expect(Col).to.exist
     })
 
-    it('接受 gutter 属性', (done) => {
+    it('Row 接受 gutter 属性', (done) => {
         Vue.component('w-row', Row)
         Vue.component('w-col', Col)
 
@@ -40,6 +40,23 @@ describe('Row & Col', () => {
             expect(getComputedStyle(cols[0]).paddingLeft).to.eq('5px')
             expect(getComputedStyle(cols[1]).paddingRight).to.eq('5px')
             done()
+            vm.$el.remove()
+            vm.$destroy()
         })
+    })
+    it('Row 接受 align 属性', () => {
+        const div = document.createElement('div')
+        document.body.appendChild(div)
+
+        const Constructor = Vue.extend(Row)
+        const vm = new Constructor({
+            propsData: {
+                align: 'left',
+            }
+        }).$mount(div)
+        const el = vm.$el
+        expect(getComputedStyle(el).justifyContent).to.eq('flex-start')
+        div.remove()
+        vm.$destroy()
     })
 })
