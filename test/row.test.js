@@ -8,16 +8,12 @@ const expect = chai.expect
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-describe('Row & Col', () => {
+describe('Row', () => {
     it('Row存在', () => {
         expect(Row).to.exist
     })
 
-    it('Col 存在', () => {
-        expect(Col).to.exist
-    })
-
-    it('Row 接受 gutter 属性', (done) => {
+    it('Row 接收 gutter 属性', (done) => {
         Vue.component('w-row', Row)
         Vue.component('w-col', Col)
 
@@ -44,7 +40,8 @@ describe('Row & Col', () => {
             vm.$destroy()
         })
     })
-    it('Row 接受 align 属性', () => {
+
+    it('Row 接收 align 属性', () => {
         const div = document.createElement('div')
         document.body.appendChild(div)
 
