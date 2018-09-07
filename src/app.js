@@ -26,12 +26,9 @@ new Vue({
     data: {
         message: 'hi',
     },
-    created() {
-        this.showToast()
-    },
     methods: {
         showToast() {
-            this.$toast()
+            this.$toast('hello im toast')
         }
     }
 })
