@@ -7,6 +7,7 @@ import Col from './col'
 import Toast from './toast'
 import Alert from './alert'
 import Confirm from './confirm'
+import plugin from './plugin'
 
 Vue.component('w-button', Button)
 Vue.component('w-button-group', ButtonGroup)
@@ -17,15 +18,20 @@ Vue.component('w-toast', Toast)
 Vue.component('w-alert', Alert)
 Vue.component('w-confirm', Confirm)
 
+Vue.use(plugin)
+
 
 new Vue({
     el: '#app',
     data: {
         message: 'hi',
     },
+    created() {
+        this.showToast()
+    },
     methods: {
-        inputChange(e) {
-            console.log(e.target.value)
+        showToast() {
+            this.$toast()
         }
     }
 })
