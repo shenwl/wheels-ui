@@ -5,7 +5,32 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        name: 'w-toast',
+        props: {
+            autoClose: {
+                type: Boolean,
+                default: true,
+            },
+            delay: {
+                type: Number,
+                default: 2,
+            }
+        },
+        mounted() {
+            if(this.autoClose) {
+                setTimeout(() => {
+                    this.close()
+                }, this.delay * 1000)
+            }
+        },
+        methods: {
+            close() {
+                this.$el.remove()
+                this.$destroy()
+            },
+        },
+    }
 </script>
 
 <style lang="scss" scoped>
