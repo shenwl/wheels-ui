@@ -1,6 +1,10 @@
 <template>
-    <div class="w-toast">
+    <div class="w-toast" :class="position">
         <slot></slot>
+        <div class="line" v-if="closeButton"></div>
+        <span class="close" v-if="closeButton" @click="onClickClose">
+            {{closeButton.text}}
+        </span>
     </div>
 </template>
 
@@ -15,10 +19,26 @@
             delay: {
                 type: Number,
                 default: 2,
+            },
+            closeButton: {
+                type: Object,
+                default: () => {
+                    return {
+                        text: '关闭',
+                        callback: undefined,
+                    }
+                }
+            },
+            position: {
+                type: String,
+                default: 'top',
+                validator(value) {
+                    return ['top', 'bottom', 'center'].indexOf(value) > -1
+                }
             }
         },
         mounted() {
-            if(this.autoClose) {
+            if (this.autoClose) {
                 setTimeout(() => {
                     this.close()
                 }, this.delay * 1000)
@@ -28,6 +48,13 @@
             close() {
                 this.$el.remove()
                 this.$destroy()
+            },
+            log: console.log.bind(console),
+            onClickClose() {
+                this.close()
+                if(this.closeButton && typeof this.closeButton.callback === 'function') {
+                    this.closeButton.callback(this)
+                }
             },
         },
     }
@@ -51,5 +78,35 @@
         align-items: center;
         border-radius: 5px;
         padding: 0 16px;
+
+        .close {
+            padding-left: 16px;
+        }
+
+        .line {
+            height: 100%;
+            border-left: 1px solid #666;
+            margin-left: 16px;
+        }
+
+        &.top {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &.bottom {
+             position: absolute;
+             bottom: 0;
+             left: 50%;
+             transform: translateX(-50%);
+         }
+        &.center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
+
 </style>

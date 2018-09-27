@@ -28,7 +28,15 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('hello im toast')
+            this.$toast('hello im toast', {
+                closeButton: {
+                    text: '知道了',
+                    callback(toast) {
+                        toast.log('知道了')
+                    },
+                },
+                position: 'center',
+            })
         }
     }
 })
