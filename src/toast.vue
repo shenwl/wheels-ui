@@ -46,6 +46,7 @@
         methods: {
             close() {
                 this.$el.remove()
+                this.$emit('beforeClose')
                 this.$destroy()
             },
             log: console.log.bind(console),
@@ -74,7 +75,14 @@
 <style lang="scss" scoped>
     $toast-min-height: 40px;
     $font-size: 14px;
+
+    @keyframes fade-in {
+        0% {opacity: 0; transform: translateX(100%);}
+        100% {opacity: 1; transform: translateX(0%);}
+    }
+
     .w-toast {
+        animation: fade-in 0.5s;
         position: fixed;
         top: 0;
         left: 50%;
