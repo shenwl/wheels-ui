@@ -30,12 +30,12 @@ new Vue({
         showToast() {
             this.$toast('hello im toast', {
                 closeButton: {
-                    text: '知道了',
+                    text: 'ok',
                     callback(toast) {
-                        toast.log('知道了')
+                        toast.log('ok')
                     },
                 },
-                position: 'center',
+                // position: 'center',
             })
         }
     }

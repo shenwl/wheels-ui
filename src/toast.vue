@@ -1,7 +1,9 @@
 <template>
-    <div class="w-toast" :class="position">
-        <slot></slot>
-        <div class="line" v-if="closeButton"></div>
+    <div class="w-toast" :class="position" ref="wrapper">
+        <div class="message">
+            <slot></slot>
+        </div>
+        <div class="line" v-if="closeButton" ref="line"></div>
         <span class="close" v-if="closeButton" @click="onClickClose">
             {{closeButton.text}}
         </span>
@@ -14,7 +16,7 @@
         props: {
             autoClose: {
                 type: Boolean,
-                default: true,
+                default: false,
             },
             delay: {
                 type: Number,
@@ -38,11 +40,8 @@
             }
         },
         mounted() {
-            if (this.autoClose) {
-                setTimeout(() => {
-                    this.close()
-                }, this.delay * 1000)
-            }
+            this.updateStyles()
+            this.execAutoClose()
         },
         methods: {
             close() {
@@ -56,12 +55,24 @@
                     this.closeButton.callback(this)
                 }
             },
+            execAutoClose() {
+                if (this.autoClose) {
+                    setTimeout(() => {
+                        this.close()
+                    }, this.delay * 1000)
+                }
+            },
+            updateStyles() {
+                this.$nextTick(() => {
+                    this.$refs.line.style.height =  `${this.$refs.wrapper.getBoundingClientRect().height}px`
+                })
+            },
         },
     }
 </script>
 
 <style lang="scss" scoped>
-    $toast-height: 40px;
+    $toast-min-height: 40px;
     $font-size: 14px;
     .w-toast {
         position: fixed;
@@ -72,19 +83,22 @@
         color: #fff;
         font-size: $font-size;
         line-height: 1.8;
-        height: $toast-height;
+        min-height: $toast-min-height;
         text-align: center;
         display: flex;
         align-items: center;
         border-radius: 5px;
         padding: 0 16px;
 
+        .message {
+            padding: 5px 0;
+        }
+
         .close {
             padding-left: 16px;
         }
 
         .line {
-            height: 100%;
             border-left: 1px solid #666;
             margin-left: 16px;
         }
