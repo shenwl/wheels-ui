@@ -28,14 +28,14 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('hello im toast', {
+            this.$toast('你的智商需要充值', {
                 closeButton: {
-                    text: 'ok',
+                    text: '已充值',
                     callback(toast) {
-                        toast.log('ok')
+                        toast.log('他说他已经充值了')
                     },
                 },
-                // position: 'center',
+                position: 'center',
             })
         }
     }
