@@ -28,7 +28,7 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('你的智商需要充值', {
+            this.$toast('你的智商需要充值' + Math.random(0, 10) * 100, {
                 closeButton: {
                     text: '已充值',
                     callback(toast) {
