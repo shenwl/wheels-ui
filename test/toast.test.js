@@ -26,7 +26,7 @@ describe('Toast', () => {
             setTimeout(() => {
                 expect(document.body.contains(vm.$el)).to.eq(false)
                 done()
-            }, 1500)
+            }, 1100)
         })
     })
 })

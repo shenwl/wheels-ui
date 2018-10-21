@@ -18,7 +18,33 @@
 </head>
 <body>
 <div id="app">
-    <div @click="showToast()">showmsg</div>
+    <w-tabs :selected.sync="selectedTab">
+        <w-tabs-head >
+            <template slot="actions">
+                <button>设置</button>
+            </template>
+            <w-tabs-item name="tech" disabled>
+                <w-icon name="setting"></w-icon>技术
+            </w-tabs-item>
+            <w-tabs-item name="city">
+                城市
+            </w-tabs-item>
+            <w-tabs-item name="job">
+                工作
+            </w-tabs-item>
+        </w-tabs-head>
+        <w-tabs-body>
+            <w-tabs-pane name="tech">
+                技术相关资讯
+            </w-tabs-pane>
+            <w-tabs-pane name="city">
+                城市相关资讯
+            </w-tabs-pane>
+            <w-tabs-pane name="job">
+                工作相关资讯
+            </w-tabs-pane>
+        </w-tabs-body>
+    </w-tabs>
 </div>
 <script src="./src/app.js"></script>
 </body>
