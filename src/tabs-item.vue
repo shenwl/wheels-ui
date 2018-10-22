@@ -36,12 +36,14 @@
         },
         methods: {
             handleTabChange() {
-                this.eventBus.$emit('update:selected', this.name)
+                this.eventBus.$emit('update:selected', this.name, this)
             },
         },
     }
 </script>
 <style lang="scss" scoped>
+    $active-blue: #4ca2ff;
+
     .w-tabs-item {
         flex-shrink: 0;
         padding-left: 2em;
@@ -50,7 +52,7 @@
         display: flex;
         align-items: center;
         &.active {
-            color: red;
+            color: $active-blue;
         }
     }
 </style>
