@@ -1,5 +1,5 @@
 <template>
-    <div class="w-tabs-pane">
+    <div class="w-tabs-pane" v-if="active">
         <slot></slot>
     </div>
 </template>
@@ -13,19 +13,19 @@
               required: true,
           }
         },
+        data() {
+            return {
+                active: false,
+            }
+        },
         created() {
             this.eventBus.$on('update:selected', (name) => {
-                console.log(name)
+                this.active = (name === this.name)
             })
-        },
-        methods: {
-            handleTabChange() {
-                this.eventBus.$emit('update:selected', this.name)
-            },
         },
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .w-tabs-pane {
 
     }
