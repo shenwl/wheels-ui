@@ -46,7 +46,7 @@
 
     .w-tabs-item {
         flex-shrink: 0;
-        padding-left: 2em;
+        padding: 1em;
         cursor: pointer;
         height: 100%;
         display: flex;

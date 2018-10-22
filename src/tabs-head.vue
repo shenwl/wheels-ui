@@ -11,9 +11,12 @@
     export default {
         name: 'w-tabs-head',
         inject: ['eventBus'],
-        created() {
+        mounted() {
             this.eventBus.$on('update:selected', (item, vm) => {
-                console.log(vm.$el)
+                let {width, left} = vm.$el.getBoundingClientRect()
+                const lineStyle = this.$refs.line.style
+                lineStyle.width = `${width}px`
+                lineStyle.transform = `translateX(${left}px)`
             })
         }
     }
@@ -29,9 +32,10 @@
         position: relative;
         > .line {
             position: absolute;
-            bottom: 2px;
+            bottom: 0;
+            left: 0;
             border-bottom: 2px solid $active-blue;
-            width: 100px;
+            transition: all 250ms;
         }
         > .actions-wrapper {
             margin-left: auto;
