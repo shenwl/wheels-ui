@@ -45,6 +45,10 @@
     .w-tabs-item {
         flex-shrink: 0;
         padding-left: 2em;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
         &.active {
             color: red;
         }

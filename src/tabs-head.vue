@@ -18,7 +18,6 @@
         display: flex;
         height: $tab-height;
         justify-content: center;
-        align-items: center;
         border: 1px solid #ccc;
         > .actions-wrapper {
             margin-left: auto;
