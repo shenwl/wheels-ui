@@ -7,6 +7,12 @@
 <script>
     export default {
         name: 'w-tabs-head',
+        inject: ['eventBus'],
+        created() {
+            this.eventBus.$on('update:selected', (name) => {
+                console.log(name)
+            })
+        },
     }
 </script>
 <style lang="scss">
