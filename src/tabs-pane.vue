@@ -27,6 +27,6 @@
 </script>
 <style lang="scss" scoped>
     .w-tabs-pane {
-
+        padding: 1em;
     }
 </style>
