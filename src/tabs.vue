@@ -32,6 +32,9 @@
             }
         },
         mounted() {
+            if(!this.$children.length) {
+                console && console.error && console.error('tabs的子组件应为tabs-head和tabs-body, 但你没有写子组件')
+            }
             this.$children.forEach(vm => {
                 if(vm.$options.name === 'w-tabs-head') {
                     vm.$children.forEach(item => {
