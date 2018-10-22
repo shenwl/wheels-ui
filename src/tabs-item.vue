@@ -26,6 +26,7 @@
           classes() {
               return {
                   active: this.active,
+                  disabled: this.disabled,
               }
           }
         },
@@ -36,6 +37,7 @@
         },
         methods: {
             handleTabChange() {
+                if(this.disabled) {return}
                 this.eventBus.$emit('update:selected', this.name, this)
             },
         },
@@ -43,6 +45,7 @@
 </script>
 <style lang="scss" scoped>
     $active-blue: #4ca2ff;
+    $disabled-color: #ddd;
 
     .w-tabs-item {
         flex-shrink: 0;
@@ -53,6 +56,9 @@
         align-items: center;
         &.active {
             color: $active-blue;
+        }
+        &.disabled {
+            color: $disabled-color;
         }
     }
 </style>
