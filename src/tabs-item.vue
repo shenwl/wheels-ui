@@ -1,5 +1,5 @@
 <template>
-    <div class="w-tabs-item" @click="handleTabChange" :class="classes">
+    <div class="w-tabs-item" @click="handleTabChange" :class="classes" :data-name="name">
         <slot></slot>
     </div>
 </template>
