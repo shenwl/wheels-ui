@@ -1,5 +1,5 @@
 {
-  "name": "wheels-test-1",
+  "name": "wheels-test",
   "version": "0.0.3",
   "description": "vue ui lib",
   "main": "dist/index.js",

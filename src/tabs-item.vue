@@ -31,14 +31,16 @@
           }
         },
         created() {
-          this.eventBus.$on('update:selected', (name) => {
-              this.active = (name === this.name)
-          })
+            if(this.eventBus) {
+                this.eventBus.$on('update:selected', (name) => {
+                    this.active = (name === this.name)
+                })
+            }
         },
         methods: {
             handleTabChange() {
-                if(this.disabled) {return}
-                this.eventBus.$emit('update:selected', this.name, this)
+                if(this.disabled) { return }
+                this.eventBus && this.eventBus.$emit('update:selected', this.name, this)
             },
         },
     }
