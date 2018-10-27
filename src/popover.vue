@@ -1,6 +1,6 @@
 <template>
-    <div class="w-popover" @click="visible=!visible">
-        <div class="content-wrapper" v-if="visible">
+    <div class="w-popover" @click.stop="handlePopoverClick">
+        <div class="content-wrapper" v-if="visible" @click.stop>
             <slot name="content"></slot>
         </div>
         <slot></slot>
@@ -11,14 +11,28 @@
     export default {
         name: 'w-popover',
         props: {
-          content: String,
+            content: String,
         },
         data() {
             return {
                 visible: false,
             }
+        },
+        methods: {
+            handlePopoverClick() {
+                this.visible = !this.visible
+                if (this.visible === true) {
+                    let eventHandler = (e) => {
+                        this.visible = false
+                        document.removeEventListener('click', eventHandler)
+                    }
+                    this.$nextTick(() => {
+                        document.addEventListener('click', eventHandler)
+                    })
+                }
+            },
         }
-    };
+    }
 </script>
 
 <style lang="scss" scoped>
