@@ -41,26 +41,29 @@
                     const hasClose = !refs.contentWrapper
                     const isTargetInContentWrapper = refs.contentWrapper && refs.contentWrapper.contains(e.target)
                     const isTargetInPopover = refs.popover.contains(e.target) || refs.popover === e.target
-                    if (hasClose || isTargetInContentWrapper || isTargetInPopover) {return}
-                    this.visible = false
+                    if (hasClose || isTargetInContentWrapper || isTargetInPopover) {
+                        return
+                    }
+                    this.close()
                     document.removeEventListener('click', eventHandler)
                 }
                 this.$nextTick(() => {
                     document.addEventListener('click', eventHandler)
                 })
             },
-            onVisible() {
+            open() {
+                this.visible = true
                 this.$nextTick(() => {
                     this.setContentPosition()
                     this.addListenerToDocument()
                 })
             },
+            close() {
+                this.visible = false
+            },
             handlePopoverClick(e) {
                 if (this.$refs.triggerWrapper.contains(e.target)) {
-                    this.visible = !this.visible
-                    if (this.visible === true) {
-                        this.onVisible()
-                    }
+                    this.visible === true ? this.close() : this.open()
                 }
             },
         }
