@@ -1,9 +1,11 @@
 <template>
     <div class="w-popover" @click.stop="handlePopoverClick">
-        <div class="content-wrapper" v-if="visible" @click.stop>
+        <div class="content-wrapper" ref="contentWrapper" v-if="visible">
             <slot name="content"></slot>
         </div>
-        <slot></slot>
+        <span ref="triggerWrapper">
+            <slot></slot>
+        </span>
     </div>
 </template>
 
@@ -12,22 +14,38 @@
         name: 'w-popover',
         props: {
             content: String,
+            event: {
+                type: String,
+                default: 'click',
+                validator(value) {
+                    return ['click', 'focus'].indexOf(value) > -1
+                }
+            }
         },
         data() {
             return {
                 visible: false,
             }
         },
+
         methods: {
             handlePopoverClick() {
                 this.visible = !this.visible
                 if (this.visible === true) {
-                    let eventHandler = (e) => {
-                        this.visible = false
-                        document.removeEventListener('click', eventHandler)
-                    }
                     this.$nextTick(() => {
-                        document.addEventListener('click', eventHandler)
+                        document.body.appendChild(this.$refs.contentWrapper)
+                        let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
+
+                        this.$refs.contentWrapper.style.left =  left + window.scrollX + 'px'
+                        this.$refs.contentWrapper.style.top =  top + window.scrollY + 'px'
+
+                        let eventHandler = (e) => {
+                            this.visible = false
+                            document.removeEventListener('click', eventHandler)
+                        }
+                        this.$nextTick(() => {
+                            document.addEventListener('click', eventHandler)
+                        })
                     })
                 }
             },
@@ -35,17 +53,14 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .w-popover {
         display: inline-block;
         vertical-align: top;
         position: relative;
-
-        .content-wrapper {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            border: 1px solid #ccc;
-        }
+    }
+    .content-wrapper {
+        position: absolute;
+        transform: translateY(-100%);
     }
 </style>
