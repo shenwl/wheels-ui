@@ -35,7 +35,7 @@
                 this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
                 this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
             },
-            eventHandler(e) {
+            handleClickDocument(e) {
                 const refs = this.$refs
                 const hasClose = !refs.contentWrapper
                 const isTargetInContentWrapper = refs.contentWrapper && refs.contentWrapper.contains(e.target)
@@ -47,7 +47,7 @@
             },
             addListenerToDocument() {
                 this.$nextTick(() => {
-                    document.addEventListener('click', this.eventHandler)
+                    document.addEventListener('click', this.handleClickDocument)
                 })
             },
             open() {
@@ -59,7 +59,7 @@
             },
             close() {
                 this.visible = false
-                document.removeEventListener('click', this.eventHandler)
+                document.removeEventListener('click', this.handleClickDocument)
             },
             handlePopoverClick(e) {
                 if (this.$refs.triggerWrapper.contains(e.target)) {
