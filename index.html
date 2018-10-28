@@ -11,6 +11,9 @@
             padding: 0;
             box-sizing: border-box;
         }
+        #app {
+            margin: 100px;
+        }
     </style>
 </head>
 <body>
@@ -20,6 +23,12 @@
             <div>content</div>
         </template>
         <button >click</button>
+    </w-popover>
+    <w-popover>
+        <template slot="content">
+            <div>content2</div>
+        </template>
+        <button >click2</button>
     </w-popover>
 </div>
 <script src="./src/app.js"></script>
