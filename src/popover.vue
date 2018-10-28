@@ -35,20 +35,19 @@
                 this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
                 this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
             },
-            addListenerToDocument() {
-                let eventHandler = (e) => {
-                    const refs = this.$refs
-                    const hasClose = !refs.contentWrapper
-                    const isTargetInContentWrapper = refs.contentWrapper && refs.contentWrapper.contains(e.target)
-                    const isTargetInPopover = refs.popover.contains(e.target) || refs.popover === e.target
-                    if (hasClose || isTargetInContentWrapper || isTargetInPopover) {
-                        return
-                    }
-                    this.close()
-                    document.removeEventListener('click', eventHandler)
+            eventHandler(e) {
+                const refs = this.$refs
+                const hasClose = !refs.contentWrapper
+                const isTargetInContentWrapper = refs.contentWrapper && refs.contentWrapper.contains(e.target)
+                const isTargetInPopover = refs.popover.contains(e.target) || refs.popover === e.target
+                if (hasClose || isTargetInContentWrapper || isTargetInPopover) {
+                    return
                 }
+                this.close()
+            },
+            addListenerToDocument() {
                 this.$nextTick(() => {
-                    document.addEventListener('click', eventHandler)
+                    document.addEventListener('click', this.eventHandler)
                 })
             },
             open() {
@@ -60,6 +59,7 @@
             },
             close() {
                 this.visible = false
+                document.removeEventListener('click', this.eventHandler)
             },
             handlePopoverClick(e) {
                 if (this.$refs.triggerWrapper.contains(e.target)) {
