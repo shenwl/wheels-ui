@@ -29,16 +29,17 @@
             }
         },
         mounted() {
-            this.eventBus.$emit('update:selected', this.single ? this.selected.slice(0, 1) : this.selected)
-            this.single && this.$emit('update:selected', this.selected.slice(0, 1))
+            const selected = JSON.parse(JSON.stringify(this.selected))
+            this.eventBus.$emit('update:selected', this.single ? selected.slice(0, 1) : selected)
+            this.single && this.$emit('update:selected', selected.slice(0, 1))
 
             this.eventBus.$on('update:removeSelected', name => {
-                const selectedArray = this.selected.filter(item => item !== name)
+                const selectedArray = selected.filter(item => item !== name)
                 this.$emit('update:selected', selectedArray)
                 this.eventBus.$emit('update:selected', selectedArray)
             })
             this.eventBus.$on('update:addSelected', name => {
-                const selectedArray = this.single ? [name] : [...this.selected, name]
+                const selectedArray = this.single ? [name] : [...selected, name]
                 this.$emit('update:selected', selectedArray)
                 this.eventBus.$emit('update:selected', selectedArray)
             })
