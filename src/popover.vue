@@ -3,7 +3,7 @@
         <div class="content-wrapper" ref="contentWrapper" v-if="visible">
             <slot name="content"></slot>
         </div>
-        <span ref="triggerWrapper">
+        <span ref="triggerWrapper" style="display: inline-block;">
             <slot></slot>
         </span>
     </div>
@@ -82,5 +82,24 @@
         transform: translateY(-100%);
         padding: 10px;
         border: 1px solid #ccc;
+        margin-top: -10px;
+
+        &::before, &::after {
+            content: '';
+            display: block;
+            border: 10px solid transparent;
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: 10px;
+        }
+        &::before {
+            top: 100%;
+            border-top-color: #ccc;
+        }
+        &::after {
+            border-top-color: #fff;
+            top: calc(100% - 1px);
+        }
     }
 </style>
