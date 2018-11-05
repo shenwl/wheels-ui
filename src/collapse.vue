@@ -15,12 +15,12 @@
                 default: false,
             },
             selected: {
-                type: String
+                type: Array
             }
         },
         data() {
             return {
-                eventBus: new Vue()
+                eventBus: new Vue(),
             }
         },
         provide() {
@@ -30,8 +30,14 @@
         },
         mounted() {
             this.eventBus.$emit('update:selected', this.selected)
-            this.eventBus.$on('update:selected', name => {
-                this.$emit('update:selected', name)
+            this.eventBus.$on('update:removeSelected', name => {
+                this.$emit('update:selected', this.selected.filter(item => item !== name))
+            })
+            this.eventBus.$on('update:addSelected', name => {
+                this.$emit('update:selected', [...this.selected, name])
+            })
+            this.$children.forEach(vm => {
+                vm.single = this.single
             })
         }
     }

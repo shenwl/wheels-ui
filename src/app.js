@@ -43,7 +43,7 @@ new Vue({
     el: '#app',
     data: {
         message: 'hi',
-        selectedTab: '2',
+        selectedTab: ['1', '2'],
     },
     methods: {
         showToast() {

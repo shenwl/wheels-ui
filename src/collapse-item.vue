@@ -25,15 +25,16 @@
         data() {
             return {
                 show: false,
+                single: false,
             }
         },
         inject: ['eventBus'],
         mounted() {
-            this.eventBus && this.eventBus.$on('update:selected', name => {
-                if (name !== this.name) {
-                    this.close()
-                } else {
+            this.eventBus && this.eventBus.$on('update:selected', names => {
+                if (names.indexOf(this.name) > -1) {
                     this.open()
+                } else {
+                    this.single && this.close()
                 }
             })
         },
@@ -41,9 +42,10 @@
             handleToggle() {
                 if (this.show) {
                     this.close()
+                    this.eventBus && this.eventBus.$emit('update:removeSelected', this.name)
                 } else {
                     this.open()
-                    this.eventBus && this.eventBus.$emit('update:selected', this.name)
+                    this.eventBus && this.eventBus.$emit('update:addSelected', this.name)
                 }
             },
             open() {
