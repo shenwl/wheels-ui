@@ -25,7 +25,7 @@
         },
         inject: ['eventBus'],
         mounted() {
-            this.eventBus.$on('update:selected', vm => {
+            this.eventBus && this.eventBus.$on('update:selected', vm => {
                 if (vm !== this) {
                     this.close()
                 }
@@ -37,7 +37,7 @@
                     this.open = false
                 } else {
                     this.open = true
-                    this.eventBus.$emit('update:selected', this)
+                    this.eventBus && this.eventBus.$emit('update:selected', this)
                 }
             },
             close() {
