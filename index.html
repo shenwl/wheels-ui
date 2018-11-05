@@ -18,18 +18,11 @@
 </head>
 <body>
 <div id="app" style="padding: 20px;">
-    <w-popover>
-        <template slot="content">
-            <div>contentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
-        </template>
-        <button >click</button>
-    </w-popover>
-    <w-popover>
-        <template slot="content">
-            <div>content2</div>
-        </template>
-        <button >click2</button>
-    </w-popover>
+    <w-collapse>
+        <w-collapse-item title="标题1"><div style="padding: 8px;">内容1</div></w-collapse-item>
+        <w-collapse-item title="标题2"><div style="padding: 8px;">内容2</div></w-collapse-item>
+        <w-collapse-item title="标题3"><div style="padding: 8px;">内容3</div></w-collapse-item>
+    </w-collapse>
 </div>
 <script src="./src/app.js"></script>
 </body>
