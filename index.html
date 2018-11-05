@@ -18,11 +18,12 @@
 </head>
 <body>
 <div id="app" style="padding: 20px;">
-    <w-collapse single selected="2">
+    <w-collapse single :selected.sync="selectedTab">
         <w-collapse-item title="标题1" name="1"><div style="padding: 8px;">内容1</div></w-collapse-item>
         <w-collapse-item title="标题2" name="2"><div style="padding: 8px;">内容2</div></w-collapse-item>
         <w-collapse-item title="标题3" name="3"><div style="padding: 8px;">内容3</div></w-collapse-item>
     </w-collapse>
+    {{selectedTab}}
 </div>
 <script src="./src/app.js"></script>
 </body>
