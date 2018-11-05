@@ -83,6 +83,11 @@
         padding: 10px;
         border: 1px solid #ccc;
         margin-top: -10px;
+        max-width: 20em;
+        word-break: break-all;
+        border-radius: 5px;
+        filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.3));
+        background: #fff;
 
         &::before, &::after {
             content: '';
