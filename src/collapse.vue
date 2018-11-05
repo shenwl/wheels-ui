@@ -29,12 +29,18 @@
             }
         },
         mounted() {
-            this.eventBus.$emit('update:selected', this.selected)
+            this.eventBus.$emit('update:selected', this.single ? this.selected.slice(0, 1) : this.selected)
+            this.single && this.$emit('update:selected', this.selected.slice(0, 1))
+
             this.eventBus.$on('update:removeSelected', name => {
-                this.$emit('update:selected', this.selected.filter(item => item !== name))
+                const selectedArray = this.selected.filter(item => item !== name)
+                this.$emit('update:selected', selectedArray)
+                this.eventBus.$emit('update:selected', selectedArray)
             })
             this.eventBus.$on('update:addSelected', name => {
-                this.$emit('update:selected', [...this.selected, name])
+                const selectedArray = this.single ? [name] : [...this.selected, name]
+                this.$emit('update:selected', selectedArray)
+                this.eventBus.$emit('update:selected', selectedArray)
             })
             this.$children.forEach(vm => {
                 vm.single = this.single
