@@ -3,7 +3,7 @@
         <div class="title" @click="handleToggle">
             {{title}}
         </div>
-        <div v-if="open">
+        <div v-if="show">
             <slot></slot>
         </div>
     </div>
@@ -16,32 +16,41 @@
             title: {
                 type: String,
                 required: true,
+            },
+            name: {
+                type: String,
+                required: true,
             }
         },
         data() {
             return {
-                open: false,
+                show: false,
             }
         },
         inject: ['eventBus'],
         mounted() {
-            this.eventBus && this.eventBus.$on('update:selected', vm => {
-                if (vm !== this) {
+            this.eventBus && this.eventBus.$on('update:selected', name => {
+                if (name !== this.name) {
                     this.close()
+                } else {
+                    this.open()
                 }
             })
         },
         methods: {
             handleToggle() {
-                if (this.open) {
-                    this.open = false
+                if (this.show) {
+                    this.close()
                 } else {
-                    this.open = true
-                    this.eventBus && this.eventBus.$emit('update:selected', this)
+                    this.open()
+                    this.eventBus && this.eventBus.$emit('update:selected', this.name)
                 }
             },
+            open() {
+                this.show = true
+            },
             close() {
-                this.open = false
+                this.show = false
             }
         }
     }
